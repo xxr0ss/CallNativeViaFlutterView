@@ -1,5 +1,6 @@
 import org.gradle.api.initialization.resolve.RepositoriesMode
 
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -16,3 +17,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Use Flutter View"
 include ':app'
+setBinding(new Binding([gradle: this]))
+evaluate(new File(
+        settingsDir.parentFile,
+        'my_fluttermod/.android/include_flutter.groovy'
+))
