@@ -1,0 +1,3 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.xx.flutter_plugin_ffi.my_flutter_plugin_ffi">
+</manifest>
