@@ -1,10 +1,10 @@
-
 import 'dart:async';
 import 'dart:ffi';
 import 'dart:io';
 import 'dart:isolate';
 
 import 'my_flutter_plugin_ffi_bindings_generated.dart';
+import 'dart:ffi' as ffi;
 
 /// A very short-lived native function.
 ///
@@ -12,6 +12,8 @@ import 'my_flutter_plugin_ffi_bindings_generated.dart';
 /// They will block the Dart execution while running the native function, so
 /// only do this for native functions which are guaranteed to be short-lived.
 int sum(int a, int b) => _bindings.sum(a, b);
+ffi.Pointer<ffi.Int8> reverse(ffi.Pointer<ffi.Int8> str, int len) =>
+    _bindings.reverse(str, len);
 
 /// A longer lived native function, which occupies the thread calling it.
 ///
@@ -51,7 +53,6 @@ final DynamicLibrary _dylib = () {
 
 /// The bindings to the native functions in [_dylib].
 final MyFlutterPluginFfiBindings _bindings = MyFlutterPluginFfiBindings(_dylib);
-
 
 /// A request to compute `sum`.
 ///

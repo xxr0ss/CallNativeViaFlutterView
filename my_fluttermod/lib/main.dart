@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
-
+import 'package:ffi/ffi.dart';
 import 'package:my_flutter_plugin_ffi/my_flutter_plugin_ffi.dart'
     as my_flutter_plugin_ffi;
 
@@ -18,12 +18,19 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   late int sumResult;
   late Future<int> sumAsyncResult;
+  late String title;
 
   @override
   void initState() {
     super.initState();
     sumResult = my_flutter_plugin_ffi.sum(1, 2);
     sumAsyncResult = my_flutter_plugin_ffi.sumAsync(3, 4);
+    String s = 'Native Package';
+    int len = s.length;
+    title = my_flutter_plugin_ffi
+        .reverse(s.toNativeUtf8().cast(), len)
+        .cast<Utf8>()
+        .toDartString();
   }
 
   @override
@@ -33,7 +40,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Native Packages'),
+          title: Text("Reversed: $title"),
         ),
         body: SingleChildScrollView(
           child: Container(

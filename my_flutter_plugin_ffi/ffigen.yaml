@@ -7,7 +7,7 @@ description: |
 output: 'lib/my_flutter_plugin_ffi_bindings_generated.dart'
 headers:
   entry-points:
-    - 'src/my_flutter_plugin_ffi.h'
+    - 'src/my_flutter_plugin_ffi.c'
   include-directives:
     - 'src/my_flutter_plugin_ffi.h'
 preamble: |
@@ -17,3 +17,5 @@ preamble: |
 comments:
   style: any
   length: full
+llvm-path: 
+  - 'D:\Software\LLVM'

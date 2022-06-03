@@ -48,9 +48,9 @@ class MyFlutterPluginFfiBindings {
 
   /// A longer lived native function, which occupies the thread calling it.
   ///
-  /// Calling these kind of native functions in the main isolate will
-  /// block Dart execution and cause dropped frames in Flutter applications.
-  /// Consider calling such native functions from a separate isolate.
+  /// Do not call these kind of native functions in the main isolate. They will
+  /// block Dart execution. This will cause dropped frames in Flutter applications.
+  /// Instead, call these native functions on a separate isolate.
   int sum_long_running(
     int a,
     int b,
@@ -66,4 +66,21 @@ class MyFlutterPluginFfiBindings {
           'sum_long_running');
   late final _sum_long_running =
       _sum_long_runningPtr.asFunction<int Function(int, int)>();
+
+  ffi.Pointer<ffi.Int8> reverse(
+    ffi.Pointer<ffi.Int8> str,
+    int len,
+  ) {
+    return _reverse(
+      str,
+      len,
+    );
+  }
+
+  late final _reversePtr = _lookup<
+      ffi.NativeFunction<
+          ffi.Pointer<ffi.Int8> Function(
+              ffi.Pointer<ffi.Int8>, ffi.Int32)>>('reverse');
+  late final _reverse = _reversePtr
+      .asFunction<ffi.Pointer<ffi.Int8> Function(ffi.Pointer<ffi.Int8>, int)>();
 }

@@ -21,3 +21,13 @@ FFI_PLUGIN_EXPORT intptr_t sum_long_running(intptr_t a, intptr_t b) {
 #endif
   return a + b;
 }
+
+
+FFI_PLUGIN_EXPORT char* reverse(char* str, int len) {
+  for(int i = 0; i < len / 2; i++) {
+    int t = str[i];
+    str[i] = str[len-i-1];
+    str[len-i-1] = t;
+  }
+  return str;
+}
