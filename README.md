@@ -30,6 +30,8 @@ headers:
     - 'src/my_flutter_plugin_ffi.c' # instead of .h
   include-directives:
     - 'src/my_flutter_plugin_ffi.h'
+llvm-path: 
+  - 'path/to/llvm' # Path to LLVM installed on your device
 # ...
 ```
 I think it is a bug that bindings are not generated when both 
