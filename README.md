@@ -35,7 +35,7 @@ llvm-path:
 # ...
 ```
 I think it is a bug that bindings are not generated when both 
-`entry-points` and `include-directorives` set to the same `.h` file
+`entry-points` and `include-directorives` are set to the same `.h` file
 
 
 # References
